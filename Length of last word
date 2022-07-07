@@ -1,0 +1,8 @@
+class Solution {
+    public int lengthOfLastWord(String s) {
+        //List<String> storeWords = new ArrayList<String>();
+        String[] storeWords = s.split(" ");
+        String last = storeWords[storeWords.length-1];
+        return last.length();
+    }
+}
