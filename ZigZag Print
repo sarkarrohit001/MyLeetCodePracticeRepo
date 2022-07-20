@@ -1,0 +1,33 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if(numRows == 1 || numRows== s.length()){
+            return s;
+        }
+        StringBuilder result = new StringBuilder();
+        
+        int jump = (numRows-1)*2;
+        // i indicates in which row we are currently in
+        for(int i = 0 ; i< numRows ; i++){
+            int  j = i;
+            while(j<s.length() ){
+                // if we are in top row or bottom row
+                if(i==0 || i==numRows-1){
+                    result.append(s.charAt(j));
+                    j=j+jump;
+                }
+                //any other row than top and bottom
+                else{
+                    //smallJump is for the second character in the middle rows
+                    int smallJump = jump-(2*i);
+                    result.append(s.charAt(j));
+                    //this condition is used so that we dont get out of index 
+                    if(j+smallJump <s.length()){
+                        result.append(s.charAt(j+smallJump));
+                    }    
+                    j=j+jump;
+                }
+            }
+        }
+        return result.toString();
+    }
+}
