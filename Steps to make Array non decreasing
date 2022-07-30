@@ -1,0 +1,19 @@
+class Solution {
+    public int totalSteps(int[] nums) {
+       int top = -1;
+        int result = 0;
+        int n = nums.length;
+        int[][] stack = new int[nums.length][2];
+        // max monotonic stack 
+        for(int i = n - 1; i >= 0; i--) {
+            int count = 0;
+            while (top > -1 && nums[stack[top][0]] < nums[i]) {
+                count = Math.max(count + 1, stack[top][1]);                 
+                top--;
+            }
+            result = Math.max(result, count);
+            stack[++top] = new int[] { i, count };
+        }
+        return result;  
+    }
+}
